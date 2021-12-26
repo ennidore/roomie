@@ -1,6 +1,6 @@
 https://github.com/<username>/<project>
 
-Roomie, Eni Sinčić, Mateo Drglin
+Roomie: Eni Sinčić, Mateo Drglin-
 Fakultet informatike u Puli
 https://fipu.unipu.hr/
 
