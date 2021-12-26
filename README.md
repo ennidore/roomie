@@ -1,24 +1,11 @@
-# roomie
+https://github.com/<username>/<project>
 
-## Project setup
-```
-npm install
-```
+Roomie, Eni Sinčić, Mateo Drglin
+Fakultet informatike u Puli
+https://fipu.unipu.hr/
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Kolegij: Programsko inženjerstvo
+http://ntankovic.unipu.hr/pi
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Mentor: doc. dr. sc. Nikola Tanković
+http://ntankovic.unipu.hr
