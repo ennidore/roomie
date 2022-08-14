@@ -1,0 +1,105 @@
+.navbar .navbar-nav {
+  margin-left: auto;
+  font-weight: normal;
+  font-size: 25px;
+  letter-spacing: 0.5px;
+  padding: 0;
+  text-transform: uppercase;
+  transition: all 0.4s ease;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.navbar .nav-item {
+  margin-left: 55px;
+}
+.navbar .navbar-brand {
+  font-weight: normal;
+  font-size: 35px;
+  margin-left: 30px;
+  color: rgba(0, 255, 255, 0.659);
+}
+.navbar .nav-link {
+  font-weight: normal;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  padding: 0;
+  text-transform: uppercase;
+  transition: all 0.4s ease;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(0, 255, 255, 0.659);
+  margin-right: 30px;
+}
+.navbar {
+  background-color: rgba(163, 28, 48, 0.723);
+}
+.navbar .nav-link:hover {
+  color: whitesmoke;
+}
+.background .background-img {
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  opacity: 0.9;
+  filter: blur(2px);
+  z-index: -1;
+  position: relative;
+}
+
+.background img {
+  width: 100%;
+  position: relative;
+  opacity: 0.9;
+  filter: blur(2px);
+}
+
+.background .overlay {
+  position: absolute;
+  top: 90px;
+  left: 20%;
+  text-align: left;
+  font-size: 30px;
+  color: white;
+  margin-right: 50%;
+}
+.background .overlay .rub {
+  position: relative;
+  top: 90px;
+  width: 180%;
+  height: 50%;
+  text-align: left;
+  font-size: 30px;
+  color: white;
+
+  padding: 10px;
+  border-radius: 25px;
+}
+.background .overlay .rub .wchat {
+  position: relative;
+  text-align: left;
+  font-size: 30px;
+  color: rgba(10, 10, 10, 0.141);
+  border: 5px solid grey;
+  border-radius: 25px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.background .overlay .rub .mchat {
+  position: relative;
+  text-align: left;
+  font-size: 30px;
+  color: rgba(10, 10, 10, 0.141);
+  border: 5px solid grey;
+  border-radius: 25px;
+  padding: 150px;
+  margin: 10px;
+}
+
+.textse {
+  font-size: 20px;
+}
+.textsah {
+  font-size: 20px;
+}
+.texthg {
+  font-size: 20px;
+}
