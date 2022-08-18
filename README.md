@@ -1,17 +1,19 @@
-https://github.com/<username>/<project>
+# roomie
 
-Roomie: Eni Sinčić, Mateo Drglin-
-Fakultet informatike u Puli
-https://fipu.unipu.hr/
+## Project setup
+```
+npm install
+```
 
-Kolegij: Programsko inženjerstvo
-http://ntankovic.unipu.hr/pi
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-Mentor: doc. dr. sc. Nikola Tanković
-http://ntankovic.unipu.hr
+### Compiles and minifies for production
+```
+npm run build
+```
 
-Roomie će se koristiti za organiziranje zaduženja cimera u zajedničkom stanu
-  
-Figma: https://www.figma.com/file/vXYbo4lGO8izr4bMx8X1Zb/Roomie?node-id=0%3A1
-
-Zaduženja Eni Sinčić: Zajedničko kreiranje html-a, css-a, i javascript-a te dizajniranje logotipa i zajedničko dizajniranje sučelja
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
