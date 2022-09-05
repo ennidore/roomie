@@ -17,23 +17,20 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">Tasks</a>
+            <router-link to="/">Home</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Chat</a>
+            <router-link to="/chat">Chat</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Calendar</a>
+            <router-link to="/Login">Login</router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Settings</a>
+            <router-link to="/Register">Register</router-link>
           </li>
         </ul>
       </div>
     </nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/Login">Login</router-link> |
-    <router-link to="/Register">Register</router-link>
   </nav>
 
   <router-view />
@@ -67,12 +64,14 @@
     font-size: 25px;
     letter-spacing: 0.5px;
     padding: 0;
+    margin-right: 30px;
     text-transform: uppercase;
     transition: all 0.4s ease;
     font-family: Arial, Helvetica, sans-serif;
   }
   .navbar .nav-item {
     margin-left: 55px;
+    font-size: 20px;
   }
   .navbar .navbar-brand {
     font-weight: normal;

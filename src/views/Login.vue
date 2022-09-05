@@ -58,7 +58,7 @@
         const auth = getAuth();
         signInWithEmailAndPassword(auth, this.email, this.password)
           .then(() => {
-            this.$router.push("/dashboard");
+            this.$router.push("/HomeView");
           })
           .catch((error) => {
             const errorCode = error.code;
