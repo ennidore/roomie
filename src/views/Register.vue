@@ -45,12 +45,12 @@
 </template>
 
 <script>
-  import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+  import { firebase, db } from "@/firebase.js";
   export default {
     data() {
       return {
         email: "",
-        password: "123456",
+        password: "",
       };
     },
     methods: {
@@ -59,8 +59,11 @@
         this.email = submitEvent.target.elements.email.value;
         this.password = submitEvent.target.elements.password.value;
         // firebase registration
+
         const auth = getAuth();
-        createUserWithEmailAndPassword(auth, this.email, this.password)
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(this.email, this.password)
           .then((userCredential) => {
             const user = userCredential.user;
             console.log(user);
