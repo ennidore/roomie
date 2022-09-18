@@ -60,7 +60,6 @@
         this.password = submitEvent.target.elements.password.value;
         // firebase registration
 
-        const auth = getAuth();
         firebase
           .auth()
           .createUserWithEmailAndPassword(this.email, this.password)

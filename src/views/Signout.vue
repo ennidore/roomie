@@ -9,8 +9,8 @@
 </template>
 
 <script>
-  import { getAuth } from "firebase/auth";
-  const auth = getAuth();
+  import { firebase, db } from "@/firebase.js";
+
   export default {
     data() {
       return {
@@ -19,7 +19,8 @@
     },
     methods: {
       signOut() {
-        auth
+        firebase
+          .auth()
           .signOut()
           .then(() => {
             console.log("Sign Out completed");

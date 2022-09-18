@@ -43,7 +43,7 @@
 </template>
 
 <script>
-  import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+  import { firebase, db } from "@/firebase.js";
   export default {
     data() {
       return {
@@ -55,8 +55,9 @@
       login(submitEvent) {
         this.email = submitEvent.target.elements.email.value;
         this.password = submitEvent.target.elements.password.value;
-        const auth = getAuth();
-        signInWithEmailAndPassword(auth, this.email, this.password)
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(this.email, this.password)
           .then(() => {
             this.$router.push("/HomeView");
           })
