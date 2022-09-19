@@ -20,19 +20,23 @@
             <router-link to="/">Home</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/chat">Chat</router-link>
+            <router-link to="/comment">Comment</router-link>
           </li>
+
           <li class="nav-item">
             <router-link to="/Login">Login</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/Register">Register</router-link>
           </li>
+          <li class="nav-item">
+            <router-link to="/Signout">Logout</router-link>
+          </li>
         </ul>
       </div>
     </nav>
   </nav>
-
+  <!-- v-if="!store.currentUser" -->
   <router-view />
   <div class="background">
     <img class="background-image" src="@/assets/backgr.jpg" />
@@ -114,3 +118,18 @@
     filter: blur(2px);
   }
 </style>
+<script>
+  export default {};
+
+  import store from "./store";
+  import { firebase } from "@/firebase.js";
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      console.log("***", user.email);
+      store.currentUser = user.email;
+    } else {
+      console.log("*** no user");
+      store.currentUser = null;
+    }
+  });
+</script>

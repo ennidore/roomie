@@ -7,6 +7,8 @@
         <input
           class="form-control"
           type="text"
+          required
+          v-model="email"
           name="email"
           placeholder="email@adress.com"
         />
@@ -16,8 +18,10 @@
         <input
           class="form-control"
           type="password"
+          required
+          v-model="password"
           name="password"
-          placeholder="password123"
+          placeholder="password"
         />
       </div>
       <div class="alternative-option mt-4">

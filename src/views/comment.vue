@@ -2,7 +2,7 @@
   <body id="p2">
     <br /><br />
     <div class="t1">
-      <p style="font-size: 1.3vw">Chat</p>
+      <p style="font-size: 1.3vw">comment</p>
     </div>
 
     <div class="addcomment">
@@ -173,16 +173,14 @@
 </style>
 
 <script>
-  import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+  import { firebase, db } from "@/firebase.js";
   import store from "@/store";
   store.stanje = 0;
   export default {
-    name: "Chat",
+    name: "comment",
     data: function () {
       return {
         store,
-        image: null,
-        images: [],
         newcomment: "",
         komentari: [],
         error: "",
@@ -190,7 +188,7 @@
     },
     methods: {
       handleClick() {
-        return this.$router.push("/chat");
+        return this.$router.push("/comment");
       },
 
       async addcomment1() {
