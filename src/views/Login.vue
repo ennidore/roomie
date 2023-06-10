@@ -27,7 +27,12 @@
       <div class="alternative-option mt-4">
         You don't have an account? <span @click="moveToRegister">Register</span>
       </div>
-      <button type="submit" class="mt-4 btn-pers" id="login_button">
+      <button
+        type="submit"
+        class="mt-4 btn-pers"
+        id="login_button"
+        @click="login()"
+      >
         Login
       </button>
       <div
@@ -47,38 +52,34 @@
 </template>
 
 <script>
-  import { firebase, db } from "@/firebase.js";
-  export default {
-    data() {
-      return {
-        email: "",
-        password: "",
-      };
+import { firebase, db } from "@/firebase.js";
+export default {
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    login() {
+      console.log("ENTERED METHOD: login");
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then((userCredential) => {
+          console.log(
+            "succesfully logged in with credential: " +
+              userCredential.user.email
+          );
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
-    methods: {
-      login(submitEvent) {
-        this.email = submitEvent.target.elements.email.value;
-        this.password = submitEvent.target.elements.password.value;
-        firebase
-          .auth()
-          .createUserWithEmailAndPassword(this.email, this.password)
-          .then(() => {
-            this.$router.push("/HomeView");
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode);
-            console.log(errorMessage);
-            let alert_1 = document.querySelector("#alert_1");
-            alert_1.classList.remove("d-none");
-            alert_1.innerHTML = errorMessage;
-            console.log(alert_1);
-          });
-      },
-      moveToRegister() {
-        this.$router.push("/register");
-      },
+    moveToRegister() {
+      this.$router.push("/register");
     },
-  };
+  },
+};
 </script>
