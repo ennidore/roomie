@@ -29,9 +29,15 @@
         Already have an account? <span @click="moveToLogin">Login</span>
       </div>
 
-      <button type="submit" id="register_button" class="mt-4 btn-pers">
+      <button
+        type="submit"
+        id="register_button"
+        class="mt-4 btn-pers"
+        @click="register()"
+      >
         Register
       </button>
+
       <div
         class="alert alert-warning alert-dismissible fade show mt-5 d-none"
         role="alert"
@@ -49,44 +55,41 @@
 </template>
 
 <script>
-  import { firebase, db } from "@/firebase.js";
-  export default {
-    data() {
-      return {
-        email: "",
-        password: "",
-      };
+import { firebase, db } from "@/firebase.js";
+export default {
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    register() {
+      console.log("ENTERED METHOD: register");
+      // firebase registration
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+          console.log("Registration completed");
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode);
+          console.log(errorMessage);
+          let alert_2 = document.querySelector("#alert_2");
+          alert_2.classList.remove("d-none");
+          alert_2.innerHTML = errorMessage;
+          console.log(alert_2);
+        });
     },
-    methods: {
-      register(submitEvent) {
-        // data update
-        this.email = submitEvent.target.elements.email.value;
-        this.password = submitEvent.target.elements.password.value;
-        // firebase registration
-
-        firebase
-          .auth()
-          .createUserWithEmailAndPassword(this.email, this.password)
-          .then((userCredential) => {
-            const user = userCredential.user;
-            console.log(user);
-            console.log("Registration completed");
-            this.$router.push("/");
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode);
-            console.log(errorMessage);
-            let alert_2 = document.querySelector("#alert_2");
-            alert_2.classList.remove("d-none");
-            alert_2.innerHTML = errorMessage;
-            console.log(alert_2);
-          });
-      },
-      moveToLogin() {
-        this.$router.push("/login");
-      },
+    moveToLogin() {
+      this.$router.push("/login");
     },
-  };
+  },
+};
 </script>
