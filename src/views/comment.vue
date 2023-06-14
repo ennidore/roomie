@@ -9,6 +9,7 @@
     </div>
   </div>
 </template> <!-- Kreacija tablica i add + delete gumb comment -->
+<style src="@/assets/styles.css"></style>
 
 
 <script>
@@ -66,3 +67,4 @@ export default {
   }
 }
 </script>
+

@@ -23,10 +23,10 @@
             <router-link to="/comment">Comment</router-link>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item" v-if="!isUserLoggedIn">
             <router-link to="/Login">Login</router-link>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" v-if="!isUserLoggedIn">
             <router-link to="/Register">Register</router-link>
           </li>
           <li class="nav-item">
@@ -44,21 +44,26 @@
 </template>
 
 <style lang="scss">
-  @import "./assets/styles.css";
-
-</style>
+  @import "./assets/styles.css";</style>
 <script>
-  export default {};
-
-  import store from "./store";
-  import { firebase } from "@/firebase.js";
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      console.log("***", user.email);
-      store.currentUser = user.email;
-    } else {
-      console.log("*** no user");
-      store.currentUser = null;
-    }
-  });
+import { firebase } from "@/firebase.js";
+export default {
+  data() {
+    return {
+      isUserLoggedIn: false,
+    };
+  },
+  created() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        console.log("***", user.email);
+        this.isUserLoggedIn = true;
+      } else {
+        console.log("*** no user");
+        this.isUserLoggedIn = false;
+      }
+    });
+  },
+};
 </script>
+
