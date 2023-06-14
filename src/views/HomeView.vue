@@ -7,7 +7,7 @@
       aliquam turpis eget, efficitur nisl.
     </p>
   </div>
-  <div class="image">
+  <div class="imagehelo">
     <img src="@/assets/imagehelo.jpg" alt="Image" />
   </div>
 </template>
@@ -36,27 +36,10 @@ export default {
           })
           .catch((error) => {
             console.log("Error fetching username:", error);
-          });
+          }); // za display ime iz firebase
       }
     },
   },
 };
 </script>
-
-<style>
-.image {
-  margin-top: 20px;
-  width: 80rem;
-  height: 48rem;
-  margin-left: 16%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 2);
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-</style>
+<style src="../assets/styles.css"></style>

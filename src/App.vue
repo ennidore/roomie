@@ -33,15 +33,16 @@
           </li>
           <li class="nav-item">
             <router-link to="/Signout">Logout</router-link>
+            <!-- connect navbar na .vue-->
           </li>
         </ul>
       </div>
     </nav>
   </nav>
-  <!-- v-if="!store.currentUser" -->
   <router-view />
   <div class="background">
     <img class="background-image" src="@/assets/backgr.jpg" />
+    <!-- slika -->
   </div>
 </template>
 
@@ -63,7 +64,7 @@ export default {
         this.isUserLoggedIn = true;
       } else {
         console.log("*** no user");
-        this.isUserLoggedIn = false;
+        this.isUserLoggedIn = false; //<!-- provjera jeli user connected-->
       }
     });
   },

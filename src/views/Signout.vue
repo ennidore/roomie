@@ -9,25 +9,25 @@
 </template>
 
 <script>
-  import { firebase, db } from "@/firebase.js";
+import { firebase, db } from "@/firebase.js";
 
-  export default {
-    data() {
-      return {
-        email: firebase.auth().currentUser.email,
-      };
+export default {
+  data() {
+    return {
+      email: firebase.auth().currentUser.email,
+    };
+  },
+  methods: {
+    signOut() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          console.log("Sign Out completed");
+          this.$router.push("/");
+        })
+        .catch((error) => console.log(error)); //sign off
     },
-    methods: {
-      signOut() {
-        firebase
-          .auth()
-          .signOut()
-          .then(() => {
-            console.log("Sign Out completed");
-            this.$router.push("/");
-          })
-          .catch((error) => console.log(error));
-      },
-    },
-  };
+  },
+};
 </script>

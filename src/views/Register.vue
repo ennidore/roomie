@@ -3,16 +3,17 @@
     <form @submit.prevent="Register">
       <h2 class="mb-3">Register</h2>
       <div class="input">
-  <label for="username">Username</label>
-  <input
-    class="form-control"
-    type="text"
-    required
-    v-model="username"
-    name="username"
-    placeholder="Enter your username"
-  />
-</div>
+        <label for="username">Username</label>
+        <input
+          class="form-control"
+          type="text"
+          required
+          v-model="username"
+          name="username"
+          placeholder="Enter your username"
+        />
+      </div>
+      <!-- addanje username-->
 
       <div class="input">
         <label for="email">Email address</label>
@@ -25,6 +26,7 @@
           placeholder="email@adress.com"
         />
       </div>
+      <!-- addanje emaila-->
       <div class="input">
         <label for="password">Password</label>
         <input
@@ -36,9 +38,11 @@
           placeholder="password"
         />
       </div>
+      <!-- addanje sifre-->
 
       <div class="alternative-option mt-4">
         Already have an account? <span @click="moveToLogin">Login</span>
+        <!-- ako imamo acc prebacuje nas na login page-->
       </div>
 
       <button
@@ -49,6 +53,7 @@
       >
         Register
       </button>
+      <!-- register button -->
 
       <div
         class="alert alert-warning alert-dismissible fade show mt-5 d-none"
@@ -80,16 +85,15 @@ export default {
   methods: {
     register() {
       console.log("ENTERED METHOD: register");
-      // Firebase registration
+
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then((userCredential) => {
-          const user = userCredential.user;
+          const user = userCredential.user; //firebase registracija
           console.log(user);
 
-          // Save the username in Firestore
-          db.collection("users")
+          db.collection("users") // spremanje username u firebase
             .doc(user.uid)
             .set({
               username: this.username,
@@ -114,9 +118,8 @@ export default {
         });
     },
     moveToLogin() {
-      this.$router.push("/login");
+      this.$router.push("/login"); //prebacijavnje na login
     },
   },
 };
-
 </script>

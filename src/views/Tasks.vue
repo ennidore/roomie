@@ -21,6 +21,7 @@
         >
           {{ task.done ? "Done" : "Not done" }}
         </button>
+        <!-- addanje done, not done i kad je done da se vise nemoze stisnuti done-->
       </div>
     </div>
   </div>
@@ -40,6 +41,7 @@ export default {
     });
 
     const addTask = () => {
+      // dodavanje taska
       const { title, date } = newTask.value;
       if (title.trim() !== "" && date !== "") {
         const formattedDate = new Date(date).toLocaleDateString("en-GB");
@@ -48,7 +50,7 @@ export default {
           date: formattedDate,
           done: false,
         };
-        db.collection("tasks")
+        db.collection("tasks") // spremanje taska
           .add(newTaskData)
           .then((docRef) => {
             console.log("Task added with ID: ", docRef.id);
@@ -62,6 +64,7 @@ export default {
     };
 
     const removeTask = (taskId) => {
+      // removanje taska
       db.collection("tasks")
         .doc(taskId)
         .delete()
@@ -74,6 +77,7 @@ export default {
     };
 
     const toggleTaskDone = (task) => {
+      //toggle task done not done
       const taskRef = db.collection("tasks").doc(task.id);
       taskRef
         .update({
