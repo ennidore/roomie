@@ -22,7 +22,9 @@
           <li class="nav-item">
             <router-link to="/comment">Comment</router-link>
           </li>
-
+          <li class="nav-item">
+            <router-link to="/Tasks">Tasks</router-link>
+          </li>
           <li class="nav-item" v-if="!isUserLoggedIn">
             <router-link to="/Login">Login</router-link>
           </li>
@@ -44,7 +46,8 @@
 </template>
 
 <style lang="scss">
-  @import "./assets/styles.css";</style>
+@import "./assets/styles.css";
+</style>
 <script>
 import { firebase } from "@/firebase.js";
 export default {
@@ -54,7 +57,7 @@ export default {
     };
   },
   created() {
-    firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         console.log("***", user.email);
         this.isUserLoggedIn = true;
@@ -66,4 +69,3 @@ export default {
   },
 };
 </script>
-

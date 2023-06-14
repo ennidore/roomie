@@ -107,7 +107,7 @@ nav a.router-link-exact-active {
   }
 
   .commentbox{
-    width: 50%;
+  width: 50%;
   height: auto;
   resize: vertical;
   padding: 10px;
@@ -115,3 +115,43 @@ nav a.router-link-exact-active {
   min-height: 75px;
   margin-left: 25%;
   }
+  .task-box {
+    flex-grow: 1;
+    flex-basis: calc(33.33% - 1rem);
+    max-width: 350px;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    margin: 0.5rem;
+    margin-top: 10px;
+  }
+  
+  
+  .task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .remove-button {
+    background-color: transparent;
+    border: none;
+    color: red;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .done-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  .task-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+.addTask {
+  position: fixed;
+  margin-left: 40%;
+
+}
