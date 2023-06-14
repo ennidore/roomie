@@ -1,16 +1,31 @@
 <template>
-  <div>
-    <h1>Welcome, {{ username }}</h1>
-    <input v-model="newComment" type="text" placeholder="Add comment" :disabled="!isUserLoggedIn">
-    <button @click="addComment" :disabled="!isUserLoggedIn">Add</button>
+  <div class="comment">
+    <textarea
+      class="form-control commentbox"
+      v-model="newComment"
+      rows="8"
+      placeholder="Add comment"
+    ></textarea>
+    <button class="btn btn-primary mt-2" @click="addComment">Add</button>
     <div v-for="comment in comments" :key="comment.id">
-      <strong>{{ comment.username }}</strong>: {{ comment.text }}
-      <button v-if="comment.username === username" @click="deleteComment(comment.id)">Delete</button>
+      <div class="commentDate">{{ formatDate(comment.timestamp) }}</div>
+      <div class="commentData">
+        {{ formatTime(comment.timestamp) }} -
+        <span class="username">{{ comment.username }}</span
+        >: {{ comment.text }}
+        <button
+          v-if="comment.userId === userId"
+          class="btn btn-danger"
+          @click="deleteComment(comment)"
+        >
+          Delete
+        </button>
+      </div>
     </div>
   </div>
-</template> <!-- Kreacija tablica i add + delete gumb comment -->
-<style src="@/assets/styles.css"></style>
+</template>
 
+<style src="../assets/styles.css"></style>
 
 <script>
 import { firebase, db } from "@/firebase.js";
@@ -18,53 +33,69 @@ import { firebase, db } from "@/firebase.js";
 export default {
   data() {
     return {
-      newComment: '',
+      newComment: "",
       comments: [],
-      username: '',
-      isUserLoggedIn: false
-    }
+      userId: null,
+      username: null,
+    };
   },
   methods: {
     addComment() {
-      db.collection('comments') //kolekcija comments u firebase
-        .add({
-          text: this.newComment,
-          timestamp: new Date(),
-          username: this.username
-        })
-        .then(() => {
-          this.newComment = ''
-        })
-    }, 
-    deleteComment(commentId) {
-      db.collection('comments').doc(commentId).delete(); //delete comment
-    }
+      if (this.newComment.trim() !== "" && this.username) {
+        db.collection("comments")
+          .add({
+            text: this.newComment,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            userId: this.userId,
+            username: this.username,
+          })
+          .then(() => {
+            this.newComment = "";
+          });
+      }
+    },
+    deleteComment(comment) {
+      if (comment.userId === this.userId) {
+        db.collection("comments").doc(comment.id).delete();
+      }
+    },
+    formatDate(timestamp) {
+      if (timestamp) {
+        const date = timestamp.toDate();
+        return date.toLocaleDateString("en-GB"); // or "en-US"
+      }
+      return "";
+    },
+    formatTime(timestamp) {
+      if (timestamp) {
+        const date = timestamp.toDate();
+        return date.toLocaleTimeString("en-GB"); // or "en-US"
+      }
+      return "";
+    },
   },
-  async mounted() {
-    firebase.auth().onAuthStateChanged(async (user) => {
+  created() {
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        this.isUserLoggedIn = true;
-        const doc = await db.collection('users').doc(user.uid).get();
-        if (doc.exists) {
-          this.username = doc.data().username;
-        } else {
-          console.log('No such document!');
-        }
-      } else {
-        console.log('No user is signed in'); //ako user nije connected u consoli
-        this.isUserLoggedIn = false;
+        this.userId = user.uid;
+        db.collection("users")
+          .doc(user.uid)
+          .get()
+          .then((doc) => {
+            this.username = doc.data().username;
+          });
       }
     });
-
-    db.collection('comments')
-      .orderBy('timestamp', 'desc')
-      .onSnapshot(snapshot => {
-        this.comments = snapshot.docs.map(doc => ({
+  },
+  mounted() {
+    db.collection("comments")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        this.comments = snapshot.docs.map((doc) => ({
           id: doc.id,
-          ...doc.data()
-        }))
-      })
-  }
-}
+          ...doc.data(),
+        }));
+      });
+  },
+};
 </script>
-
