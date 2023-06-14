@@ -123,7 +123,7 @@ nav a.router-link-exact-active {
     background-color: #f0f0f0;
     border-radius: 5px;
     margin: 0.5rem;
-    margin-top: 10px;
+    margin-top: 50px; 
   }
   
   
@@ -154,4 +154,23 @@ nav a.router-link-exact-active {
   position: fixed;
   margin-left: 40%;
 
+}
+.remove-button {
+  background-color: transparent;
+  border: none;
+  color: red;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.done-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: red;
+}
+
+.done-button[disabled] {
+  color: green;
+  cursor: not-allowed;
 }

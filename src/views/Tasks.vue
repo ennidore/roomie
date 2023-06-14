@@ -7,15 +7,21 @@
         <button type="submit">Add Task</button>
       </form>
     </div>
-    <div v-for="task in tasks" :key="task.id" class="task-box">
-      <div class="task-header">
-        <div>{{ task.title }}</div>
-        <button class="remove-button" @click="removeTask(task.id)">X</button>
+    <div class="task-list">
+      <div v-for="task in tasks" :key="task.id" class="task-box">
+        <div class="task-header">
+          <div>{{ task.title }}</div>
+          <button class="remove-button" @click="removeTask(task.id)">X</button>
+        </div>
+        <div>{{ task.date }}</div>
+        <button
+          class="done-button"
+          @click="toggleTaskDone(task)"
+          :disabled="task.done"
+        >
+          {{ task.done ? "Done" : "Not done" }}
+        </button>
       </div>
-      <div>{{ task.date }}</div>
-      <button class="done-button" @click="toggleTaskDone(task)">
-        {{ task.done ? "Undone" : "Done" }}
-      </button>
     </div>
   </div>
 </template>
@@ -36,9 +42,10 @@ export default {
     const addTask = () => {
       const { title, date } = newTask.value;
       if (title.trim() !== "" && date !== "") {
+        const formattedDate = new Date(date).toLocaleDateString("en-GB");
         const newTaskData = {
           title,
-          date,
+          date: formattedDate,
           done: false,
         };
         db.collection("tasks")
@@ -97,5 +104,4 @@ export default {
   },
 };
 </script>
-
 <style src="../assets/styles.css"></style>
