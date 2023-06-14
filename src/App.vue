@@ -1,7 +1,7 @@
 <template>
   <nav>
     <nav class="navbar navbar-expand-lg">
-      <a class="navbar-brand" href="HomeView.vue">Roomie</a>
+      <a class="navbar-brand" href="/">Roomie</a>
       <button
         class="navbar-toggler"
         type="button"

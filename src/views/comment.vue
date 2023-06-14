@@ -3,7 +3,7 @@
     <textarea
       class="form-control commentbox"
       v-model="newComment"
-      rows="8"
+      rows="2"
       placeholder="Add comment"
     ></textarea>
     <button class="btn btn-primary mt-2" @click="addComment">Add</button>
