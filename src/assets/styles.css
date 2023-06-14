@@ -3,16 +3,16 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #2c503f;
 }
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: white;
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: white;
 }
 
 .navbar .navbar-nav {
@@ -36,7 +36,7 @@ nav a.router-link-exact-active {
   font-weight: normal;
   font-size: 35px;
   margin-left: 30px;
-  color: rgba(0, 255, 255, 0.659);
+  color: white;
 }
 
 .navbar .nav-link {
