@@ -14,7 +14,7 @@
   export default {
     data() {
       return {
-        email: auth.currentUser.email,
+        email: firebase.auth().currentUser.email,
       };
     },
     methods: {

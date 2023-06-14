@@ -3,6 +3,18 @@
     <form @submit.prevent="Register">
       <h2 class="mb-3">Register</h2>
       <div class="input">
+  <label for="username">Username</label>
+  <input
+    class="form-control"
+    type="text"
+    required
+    v-model="username"
+    name="username"
+    placeholder="Enter your username"
+  />
+</div>
+
+      <div class="input">
         <label for="email">Email address</label>
         <input
           class="form-control"
@@ -56,25 +68,39 @@
 
 <script>
 import { firebase, db } from "@/firebase.js";
+
 export default {
   data() {
     return {
       email: "",
       password: "",
+      username: "",
     };
   },
   methods: {
     register() {
       console.log("ENTERED METHOD: register");
-      // firebase registration
+      // Firebase registration
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then((userCredential) => {
           const user = userCredential.user;
           console.log(user);
-          console.log("Registration completed");
-          this.$router.push("/");
+
+          // Save the username in Firestore
+          db.collection("users")
+            .doc(user.uid)
+            .set({
+              username: this.username,
+            })
+            .then(() => {
+              console.log("User data saved successfully");
+              this.$router.push("/");
+            })
+            .catch((error) => {
+              console.log("Error saving user data:", error);
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -92,4 +118,5 @@ export default {
     },
   },
 };
+
 </script>
