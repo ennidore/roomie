@@ -26,12 +26,13 @@
             <router-link to="/Tasks">Tasks</router-link>
           </li>
           <li class="nav-item" v-if="!isUserLoggedIn">
+            <!-- sakrivanje login -->
             <router-link to="/Login">Login</router-link>
           </li>
           <li class="nav-item" v-if="!isUserLoggedIn">
             <router-link to="/Register">Register</router-link>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" v-if="isUserLoggedIn">
             <router-link to="/Signout">Logout</router-link>
             <!-- connect navbar na .vue-->
           </li>
