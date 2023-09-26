@@ -1,5 +1,4 @@
-https://github.com/<username>/<project>
-
+Link za stranicu: [CLick here](https://roomie-a28aa.firebaseapp.com/)
 Roomie: Mateo Drglin-
 Fakultet informatike u Puli
 https://fipu.unipu.hr/
